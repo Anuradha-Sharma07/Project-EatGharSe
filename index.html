@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatGharSe - Homemade Food Delivery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Softer, modern background */
+            color: #333;
+        }
+        /* Custom gradient for primary elements */
+        .bg-gradient-primary {
+            background-image: linear-gradient(to right, #FF8C00, #FFD700); /* Orange to Gold */
+        }
+        .text-gradient-primary {
+            background-image: linear-gradient(to right, #FF8C00, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Hide scrollbar for horizontal scrolling sections */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        /* Custom shadow for cards to give depth */
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card-shadow-hover:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px); /* Slight lift effect */
+        }
+        .transition-all-ease {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between sticky top-0 z-20">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+            <!-- Using Font Awesome icon for a more professional look -->
+            <i class="fas fa-home text-gradient-primary text-2xl"></i>
+            <h1 class="text-2xl font-bold text-gray-800">EatGharSe</h1>
+        </div>
+        <!-- Search Bar (More prominent for desktop) -->
+        <div class="relative flex-grow mx-4 max-w-lg hidden md:block">
+            <input type="text" placeholder="Search for dishes or chefs..." class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all-ease">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <!-- User & Cart Icons -->
+        <div class="flex items-center space-x-4">
+            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all-ease" id="chef-portal-btn">
+                <i class="fas fa-hat-chef text-gray-600 text-lg"></i> <!-- Chef hat icon -->
+            </button>
+            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all-ease">
+                <i class="fas fa-user text-gray-600 text-lg"></i>
+            </button>
+            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all-ease relative">
+                <i class="fas fa-shopping-cart text-gray-600 text-lg"></i>
+                <span id="cart-item-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow p-4 md:p-8 pb-20"> <!-- Increased padding for better spacing -->
+
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-primary rounded-2xl p-6 md:p-10 mb-10 text-white shadow-xl overflow-hidden card-shadow">
+            <!-- Subtle background pattern for visual interest -->
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <pattern id="pattern-dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.2)"/>
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-dots)"/>
+                </svg>
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 text-center md:text-left mb-6 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-3">Craving Authentic Homemade Food?</h2>
+                    <p class="text-lg md:text-xl font-medium mb-6 opacity-90">Discover delicious, healthy meals from local home chefs, just like mom used to make!</p>
+                    <button class="bg-white text-gradient-primary px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all-ease">
+                        Order Your Comfort Food Now
+                    </button>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <!-- More appealing placeholder image for hero section -->
+                    <img src="https://placehold.co/250x250/FFD700/FFFFFF?text=Home+Cooked+Delight" alt="Delicious Home cooked meal" class="rounded-full shadow-2xl border-4 border-white">
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="mb-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-5">Explore Meal Categories</h3>
+            <div class="flex space-x-4 overflow-x-auto hide-scrollbar pb-3">
+                <!-- Category Card 1: Indian -->
+                <div class="flex-none w-32 h-32 bg-white rounded-xl card-shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:card-shadow-hover transition-all-ease category-card" data-category="Indian">
+                    <img src="https://placehold.co/60x60/FF8C00/FFFFFF?text=🥘" alt="Indian Food" class="mb-2 rounded-full">
+                    <span class="text-sm font-semibold text-gray-700">Indian</span>
+                </div>
+                <!-- Category Card 2: Thalis -->
+                <div class="flex-none w-32 h-32 bg-white rounded-xl card-shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:card-shadow-hover transition-all-ease category-card" data-category="Thalis">
+                    <img src="https://placehold.co/60x60/FFD700/FFFFFF?text=🍛" alt="Thalis" class="mb-2 rounded-full">
+                    <span class="text-sm font-semibold text-gray-700">Thalis</span>
+                </div>
+                <!-- Category Card 3: Desserts -->
+                <div class="flex-none w-32 h-32 bg-white rounded-xl card-shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:card-shadow-hover transition-all-ease category-card" data-category="Desserts">
+                    <img src="https://placehold.co/60x60/FF8C00/FFFFFF?text=🍰" alt="Desserts" class="mb-2 rounded-full">
+                    <span class="text-sm font-semibold text-gray-700">Desserts</span>
+                </div>
+                <!-- Category Card 4: Healthy -->
+                <div class="flex-none w-32 h-32 bg-white rounded-xl card-shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:card-shadow-hover transition-all-ease category-card" data-category="Healthy">
+                    <img src="https://placehold.co/60x60/FFD700/FFFFFF?text=🥗" alt="Healthy Food" class="mb-2 rounded-full">
+                    <span class="text-sm font-semibold text-gray-700">Healthy</span>
+                </div>
+                <!-- Category Card 5: Breakfast -->
+                <div class="flex-none w-32 h-32 bg-white rounded-xl card-shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:card-shadow-hover transition-all-ease category-card" data-category="Breakfast">
+                    <img src="https://placehold.co/60x60/FF8C00/FFFFFF?text=🍳" alt="Breakfast" class="mb-2 rounded-full">
+                    <span class="text-sm font-semibold text-gray-700">Breakfast</span>
+                </div>
+                <!-- Add more categories as needed -->
+            </div>
+        </section>
+
+        <!-- New Section: Dynamic Specials & Offers -->
+        <section class="mb-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-5">Today's Special Offers!</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Special Offer Card 1: Nani's Special -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Nani's Special Biryani" data-is-special="true">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x400/FFD700/FFFFFF?text=Nani's+Special" alt="Nani's Special Biryani" class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Nani's Special!</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Grandma's Special Chicken Biryani</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Nani's Kitchen <span class="text-green-600 font-semibold ml-2">Zero-Waste Chef!</span></p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-extrabold text-gradient-primary">₹350 <s class="text-gray-400 text-lg ml-2">₹400</s></span>
+                            <button class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-all-ease add-to-cart-btn">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Special Offer Card 2: Student Special -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Student Special Thali" data-is-special="true">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x400/FF8C00/FFFFFF?text=Student+Special" alt="Student Special Thali" class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Hostel Special!</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Student's Healthy Veg Thali</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Campus Kitchen <span class="text-green-600 font-semibold ml-2">Zero-Waste Chef!</span></p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-extrabold text-gradient-primary">₹180 <s class="text-gray-400 text-lg ml-2">₹220</s></span>
+                            <button class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-all-ease add-to-cart-btn">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tiffin Connect Section -->
+        <section class="relative bg-blue-600 rounded-2xl p-6 md:p-10 mb-10 text-white shadow-xl overflow-hidden card-shadow">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <pattern id="pattern-lines" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-lines)"/>
+                </svg>
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 text-center md:text-left mb-6 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-3">Hostel Life? Get Homemade Tiffins!</h2>
+                    <p class="text-lg md:text-xl font-medium mb-6 opacity-90">Introducing **Tiffin Connect**: Healthy, hygienic, and affordable meal subscriptions delivered right to your hostel.</p>
+                    <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all-ease" id="tiffin-connect-btn">
+                        Explore Tiffin Plans
+                    </button>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <img src="https://placehold.co/250x250/60A5FA/FFFFFF?text=Tiffin+Connect" alt="Tiffin Connect" class="rounded-full shadow-2xl border-4 border-white">
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Dishes Section (Modified for Zero-Waste) -->
+        <section class="mb-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-5">Popular Dishes Near You</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Food Item Card 1: Paneer Butter Masala (Zero-Waste Example) -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Paneer Butter Masala" data-servings-left="3" data-total-servings="10">
+                    <img src="https://placehold.co/600x400/FFD700/FFFFFF?text=Paneer+Butter+Masala" alt="Paneer Butter Masala" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Paneer Butter Masala</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Chef Anjali's Kitchen <span class="text-green-600 font-semibold ml-2">Zero-Waste Chef!</span></p>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl font-extrabold text-gradient-primary">₹250</span>
+                            <span class="text-sm text-gray-500">Only <span class="font-bold text-orange-500">3/10</span> servings left!</span>
+                        </div>
+                        <button class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-all-ease add-to-cart-btn w-full">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Food Item Card 2: Chicken Biryani -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Chicken Biryani">
+                    <img src="https://placehold.co/600x400/FF8C00/FFFFFF?text=Chicken+Biryani" alt="Chicken Biryani" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Authentic Chicken Biryani</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Chef Abdul's Delights</p>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl font-extrabold text-gradient-primary">₹320</span>
+                            <!-- No servings left for this one to show variation -->
+                        </div>
+                        <button class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-all-ease add-to-cart-btn w-full">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Food Item Card 3: Dal Makhani & Roti (Zero-Waste Example) -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Dal Makhani & Roti" data-servings-left="0" data-total-servings="8">
+                    <img src="https://placehold.co/600x400/FFD700/FFFFFF?text=Dal+Makhani+Roti" alt="Dal Makhani & Roti" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Nani's Special Dal Makhani Thali</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Nani's Kitchen <span class="text-green-600 font-semibold ml-2">Zero-Waste Chef!</span></p>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl font-extrabold text-gray-400">₹180</span>
+                            <span class="text-sm text-red-500 font-bold">Sold Out!</span>
+                        </div>
+                        <button class="bg-gray-300 text-gray-600 px-5 py-2.5 rounded-full text-base font-semibold cursor-not-allowed w-full" disabled>
+                            Sold Out
+                        </button>
+                    </div>
+                </div>
+                <!-- Food Item Card 4: Healthy Veg Thali -->
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden cursor-pointer hover:card-shadow-hover transition-all-ease food-item-card" data-dish="Veg Thali">
+                    <img src="https://placehold.co/600x400/FF8C00/FFFFFF?text=Healthy+Veg+Thali" alt="Healthy Veg Thali" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-xl font-bold text-gray-800 mb-1">Healthy Veg Thali</h4>
+                        <p class="text-sm text-gray-600 mb-3">By Chef Priya's Home</p>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl font-extrabold text-gradient-primary">₹220</span>
+                        </div>
+                        <button class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-all-ease add-to-cart-btn w-full">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Fixed for mobile-first experience) -->
+    <nav class="fixed bottom-0 left-0 w-full bg-white shadow-lg p-3 flex justify-around items-center rounded-t-2xl z-20 md:hidden">
+        <!-- Home Button -->
+        <button class="flex flex-col items-center text-gradient-primary nav-button transition-all-ease" data-nav="home">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1 font-medium">Home</span>
+        </button>
+        <!-- Search Button -->
+        <button class="flex flex-col items-center text-gray-500 hover:text-gradient-primary nav-button transition-all-ease" data-nav="search">
+            <i class="fas fa-search text-xl"></i>
+            <span class="text-xs mt-1 font-medium">Search</span>
+        </button>
+        <!-- Cart Button -->
+        <button class="flex flex-col items-center text-gray-500 hover:text-gradient-primary nav-button transition-all-ease relative" data-nav="cart">
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span id="cart-item-count-mobile" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            <span class="text-xs mt-1 font-medium">Cart</span>
+        </button>
+        <!-- Profile Button -->
+        <button class="flex flex-col items-center text-gray-500 hover:text-gradient-primary nav-button transition-all-ease" data-nav="profile">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-xs mt-1 font-medium">Profile</span>
+        </button>
+    </nav>
+
+    <!-- Simple Modal for Chef Portal (Conceptual AI Assistant) -->
+    <div id="chef-portal-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full shadow-lg text-center relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl" id="close-chef-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Welcome, Chef!</h3>
+            <p class="text-lg text-gray-700 mb-6">Your **Smart Culinary Assistant** is ready to help!</p>
+            <div class="bg-blue-50 p-4 rounded-lg mb-6 text-left">
+                <p class="font-semibold text-blue-800 mb-2"><i class="fas fa-lightbulb text-blue-600 mr-2"></i>AI Suggestion for Today:</p>
+                <p class="text-blue-700">"Demand for **hot `Pakoras`** is high in your area due to the rainy forecast. Consider adding a 'Monsoon Special Combo' to your menu today!"</p>
+            </div>
+            <button class="bg-gradient-primary text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all-ease">
+                Go to My Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize cart count
+        let cartItemCount = 0;
+
+        // Function to update cart count display
+        function updateCartCount() {
+            const countElements = document.querySelectorAll('#cart-item-count, #cart-item-count-mobile');
+            if (cartItemCount > 0) {
+                countElements.forEach(el => {
+                    el.textContent = cartItemCount;
+                    el.classList.remove('hidden');
+                });
+            } else {
+                countElements.forEach(el => {
+                    el.classList.add('hidden');
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Event listener for category cards
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const category = card.dataset.category;
+                    console.log(`Category clicked: ${category}`);
+                    // In a real app, this would filter dishes or navigate to a category page
+                });
+            });
+
+            // Event listener for food item cards (for detail view)
+            const foodItemCards = document.querySelectorAll('.food-item-card');
+            foodItemCards.forEach(card => {
+                card.addEventListener('click', (event) => {
+                    // Prevent clicking the entire card from triggering if the "Add to Cart" button is clicked
+                    if (!event.target.closest('.add-to-cart-btn')) {
+                        const dish = card.dataset.dish;
+                        console.log(`Food item clicked for details: ${dish}`);
+                        // In a real app, this would navigate to a dish detail page
+                    }
+                });
+            });
+
+            // Event listener for "Add to Cart" buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent the parent card's click event from firing
+                    const dishName = button.closest('.food-item-card').dataset.dish;
+                    console.log(`Added to cart: ${dishName}`);
+                    cartItemCount++; // Increment cart count
+                    updateCartCount(); // Update display
+                    
+                    // Show custom message box
+                    const messageBox = document.createElement('div');
+                    messageBox.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all-ease opacity-0';
+                    messageBox.textContent = `"${dishName}" added to cart!`;
+                    document.body.appendChild(messageBox);
+
+                    // Fade in
+                    setTimeout(() => {
+                        messageBox.classList.remove('opacity-0');
+                        messageBox.classList.add('opacity-100');
+                    }, 10);
+
+                    // Fade out and remove
+                    setTimeout(() => {
+                        messageBox.classList.remove('opacity-100');
+                        messageBox.classList.add('opacity-0');
+                        messageBox.addEventListener('transitionend', () => messageBox.remove());
+                    }, 2000);
+                });
+            });
+
+            // Event listener for bottom navigation buttons
+            const navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const navTarget = button.dataset.nav;
+                    console.log(`Navigation button clicked: ${navTarget}`);
+
+                    // Remove active state from all buttons
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('text-gradient-primary');
+                        btn.classList.add('text-gray-500');
+                    });
+
+                    // Add active state to the clicked button
+                    button.classList.add('text-gradient-primary');
+                    button.classList.remove('text-gray-500');
+
+                    // In a real app, this would change the content or navigate to a new page
+                });
+            });
+
+            // Tiffin Connect Button functionality
+            const tiffinConnectBtn = document.getElementById('tiffin-connect-btn');
+            tiffinConnectBtn.addEventListener('click', () => {
+                console.log('Explore Tiffin Plans clicked!');
+                // In a real app, this would navigate to the Tiffin Connect subscription page
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all-ease opacity-0';
+                messageBox.textContent = `Navigating to Tiffin Plans! (Simulated)`;
+                document.body.appendChild(messageBox);
+                setTimeout(() => { messageBox.classList.remove('opacity-0'); messageBox.classList.add('opacity-100'); }, 10);
+                setTimeout(() => {
+                    messageBox.classList.remove('opacity-100');
+                    messageBox.classList.add('opacity-0');
+                    messageBox.addEventListener('transitionend', () => messageBox.remove());
+                }, 2000);
+            });
+
+            // Chef Portal Modal functionality (for Smart Culinary Assistant concept)
+            const chefPortalBtn = document.getElementById('chef-portal-btn');
+            const chefPortalModal = document.getElementById('chef-portal-modal');
+            const closeChefModalBtn = document.getElementById('close-chef-modal');
+
+            chefPortalBtn.addEventListener('click', () => {
+                chefPortalModal.classList.remove('hidden');
+                console.log('Chef Portal button clicked - showing AI suggestion modal.');
+            });
+
+            closeChefModalBtn.addEventListener('click', () => {
+                chefPortalModal.classList.add('hidden');
+            });
+
+            // Initial cart count update
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
